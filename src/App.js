@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Order from "./components/Order";
+import PizzaManager from './components/pizza/PizzaManager';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <div className="dashboardcontainer">
-          <Order orderDate="111" customerName="Adam Smith" phone="999999999" address="Warsaw" price="100"/>
+          <PizzaManager/>
         </div>
 
         {/* <header className="App-header">

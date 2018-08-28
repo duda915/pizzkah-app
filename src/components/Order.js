@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Order.css';
 
 class Order extends Component {
     pizzaList(pizzas) {
@@ -23,4 +24,4 @@ class Order extends Component {
     }
 }
 
-export default Order
+export default Order;

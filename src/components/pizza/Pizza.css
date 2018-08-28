@@ -1,0 +1,9 @@
+.pizza {
+    border-radius: 12px;
+    border-color: rgb(161, 82, 82);
+    border-style: solid;
+}
+
+.pizza ul {
+    list-style-type: none;
+}
