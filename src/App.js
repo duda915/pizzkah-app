@@ -3,10 +3,15 @@ import './App.css';
 import PizzaManager from './components/pizza/PizzaManager';
 
 class App extends Component {
+  //main view logic here
+
   render() {
     return (
       <div className="App">
         <div className="dashboardcontainer">
+          
+        </div>
+        <div className="contentcontainer">
           <PizzaManager/>
         </div>
 
