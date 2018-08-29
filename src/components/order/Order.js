@@ -28,7 +28,15 @@ class Order extends Component {
     }
 
     handleCompleteOrder() {
-
+        fetch('http://localhost:8081/api/order', {
+            method: 'PUT', // or 'PUT'
+            body: JSON.stringify(this.props.orderId),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
     }
 
     render() {
