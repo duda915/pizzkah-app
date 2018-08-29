@@ -48,7 +48,7 @@ class PizzaManager extends Component {
             console.log(err);
         });
 
-        console.log(pizzaItems + "Xx");
+        console.log(pizzaItems);
         return pizzaItems;
     };
 

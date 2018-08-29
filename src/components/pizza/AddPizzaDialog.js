@@ -8,13 +8,15 @@ class AddPizzaDialog extends Component {
         this.state = {
             nameInput: "",
             ingredientsInput: "",
-            priceInput: ""
+            priceInput: "",
         }
         
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleNameInputChange = this.handleNameInputChange.bind(this);
-        this.handleIngredientsInputChange = this.handleIngredientsInputChange.bind(this);
-        this.handlePriceInputChange = this.handlePriceInputChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    componentDidMount() {
+
     }
 
     
@@ -32,32 +34,27 @@ class AddPizzaDialog extends Component {
 
         fetch('http://localhost:8081/api/pizza', {
             method: 'POST', // or 'PUT'
-            body: JSON.stringify(newPizzaObject), // data can be `string` or {object}!
+            body: JSON.stringify(newPizzaObject),
             headers:{
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
         .then(response => console.log('Success:', JSON.stringify(response)))
         .catch(error => console.error('Error:', error));
+
+        this.props.hideDialog();
         
     }
 
-    handleNameInputChange(event) {
-        this.setState({
-            nameInput: event.target.value,
-        });
-    }
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
-    handleIngredientsInputChange(event) {
         this.setState({
-            ingredientsInput: event.target.value,
-        });
-    }
+            [name]: value
+        })
 
-    handlePriceInputChange(event) {
-        this.setState({
-            priceInput: event.target.value,
-        });
     }
 
     render() {
@@ -67,16 +64,18 @@ class AddPizzaDialog extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <h3> Add Pizza </h3>
                         <label>
-                            Name: <input type="text" value={this.state.nameInput} onChange={this.handleNameInputChange} />
+                            Name: <input type="text" value={this.state.nameInput} name="nameInput" 
+                            onChange={this.handleInputChange} />
                         </label>
                         <br/>
                         <label>
-                            Ingredients: <input type="text" value={this.state.ingredientsInput} 
-                                onChange={this.handleIngredientsInputChange}/>
+                            Ingredients: <input type="text" value={this.state.ingredientsInput} name="ingredientsInput" 
+                                onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
-                            Price: <input type="text" value={this.state.priceInput} onChange={this.handlePriceInputChange}/>
+                            Price: <input type="text" value={this.state.priceInput} name="priceInput"
+                            onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <input type="submit" value="Add"/>
