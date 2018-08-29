@@ -3,6 +3,7 @@ import './App.css';
 import PizzaManager from './components/pizza/PizzaManager';
 import Dashboard from './components/Dashboard';
 import OrderList from './components/order/OrderList';
+import CompletedOrderList from './components/completedorder/CompletedOrderList';
 
 class App extends Component {
   //main view logic here
@@ -37,7 +38,7 @@ class App extends Component {
       break;
       case this.state.completedOrdersButtonName:
       console.log('Not implemented yet');
-      tabToRender = 'xx';
+      tabToRender = (<CompletedOrderList/>);
       break;
       default:
       tabToRender = "Wrong Tab";
