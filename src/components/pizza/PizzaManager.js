@@ -27,7 +27,6 @@ class PizzaManager extends Component {
     }   
 
     fetchPizzas() {
-        let pizzaItems = null;
 
         fetch('http://localhost:8081/api/pizza?available=false', {
             method: 'get',
@@ -48,8 +47,6 @@ class PizzaManager extends Component {
             console.log(err);
         });
 
-        console.log(pizzaItems);
-        return pizzaItems;
     };
 
     render() {
