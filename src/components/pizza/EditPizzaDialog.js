@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 
-class AddPizzaDialog extends Component {
+class EditPizzaDialog extends Component {
     constructor(props) {
         super(props);
 
@@ -9,6 +9,7 @@ class AddPizzaDialog extends Component {
             nameInput: "",
             ingredientsInput: "",
             priceInput: "",
+            available: false,
         }
         
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,7 +17,15 @@ class AddPizzaDialog extends Component {
     }
 
     componentDidMount() {
+        let isAvailable = (this.props.available === 'true')
+        this.setState({
+            nameInput: this.props.pizzaName,
+            ingredientsInput: this.props.pizzaIngredients,
+            priceInput: this.props.pizzaPrice,
+            available: isAvailable,
+        })
 
+        console.log(this.props.pizzaId);
     }
 
     
@@ -28,12 +37,12 @@ class AddPizzaDialog extends Component {
             name: this.state.nameInput,
             ingredients: this.state.ingredientsInput,
             price: this.state.priceInput,
-            available: true
+            available: this.state.available
         };
         console.log(newPizzaObject);
 
-        fetch('http://localhost:8081/api/pizza', {
-            method: 'POST', // or 'PUT'
+        fetch('http://localhost:8081/api/pizza?id='+this.props.pizzaId, {
+            method: 'PUT', // or 'PUT'
             body: JSON.stringify(newPizzaObject),
             headers:{
                 'Content-Type': 'application/json'
@@ -48,7 +57,7 @@ class AddPizzaDialog extends Component {
 
     handleInputChange(event) {
         const target = event.target;
-        const value = target.value;
+        const value = target.type === 'checkbox' ? target.checked : target.value; 
         const name = target.name;
 
         this.setState({
@@ -61,7 +70,7 @@ class AddPizzaDialog extends Component {
         if(this.props.visible === true) {
             return(
                 <div className="pizzaDialog">
-                        <h3> Add Pizza </h3>
+                        <h3> Edit Pizza </h3>
                         <label>
                             Name: <input type="text" value={this.state.nameInput} name="nameInput" 
                             onChange={this.handleInputChange} />
@@ -77,7 +86,12 @@ class AddPizzaDialog extends Component {
                             onChange={this.handleInputChange}/>
                         </label>
                         <br/>
-                        <input type="button" onClick={this.handleSubmit} value="Add"/>
+                        <label>
+                            Available: <input type="checkbox" checked={this.state.available} name="available"
+                            onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <input type="button" onClick={this.handleSubmit} value="Apply"/>
                         <button onClick={this.props.hideDialog}>Close</button>
                 </div>
             )
@@ -87,4 +101,4 @@ class AddPizzaDialog extends Component {
     }
 }
 
-export default AddPizzaDialog;
+export default EditPizzaDialog;
