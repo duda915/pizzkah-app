@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
+* {
+    font-family: 'Questrial', sans-serif;
+    color: white;
+}
+
+.layoutGrid {
+    display: grid;
+    grid-template-columns: 15% auto;
+    grid-template-rows: 10% auto;
+}
+
+.layoutGrid > div {
+    border: 1px solid blue;
+    padding: 0;
+    margin: 0;
+}

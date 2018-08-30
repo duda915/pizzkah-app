@@ -1,0 +1,10 @@
+.appNameComponentLayout{
+    background-color: #73886F;
+    height: 100%;
+}
+
+.appNameComponent {
+    font-size: 20px;
+    text-align: center;
+    padding: 15px; 
+}

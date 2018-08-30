@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import './grid.css';
 import PizzaManager from './components/pizza/PizzaManager';
-import Dashboard from './components/Dashboard';
+import MenuComponent from './components/MenuComponent';
 import OrderList from './components/order/OrderList';
 import CompletedOrderList from './components/completedorder/CompletedOrderList';
+import AppName from './components/ui/AppName';
+import TopBar from './components/ui/TopBar';
 
 class App extends Component {
   //main view logic here
@@ -52,21 +54,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="dashboardcontainer">
-          <Dashboard clickHandler={this.dashboardHandler} activeOrdersButtonName={this.state.activeOrdersButtonName}
-          pizzasButtonName={this.state.pizzasButtonName} completedOrdersButtonName={this.state.completedOrdersButtonName}/>
+        <div className="layoutGrid">
+          <div>
+            <AppName/>
+          </div>
+          <div>
+            <TopBar/>
+          </div>
+          <div className="dashboardcontainer">
+            <MenuComponent clickHandler={this.dashboardHandler} activeOrdersButtonName={this.state.activeOrdersButtonName}
+            pizzasButtonName={this.state.pizzasButtonName} completedOrdersButtonName={this.state.completedOrdersButtonName}/>
+          </div>
+          <div className="contentcontainer">
+            {this.state.activeTab}
+          </div>
         </div>
-        <div className="contentcontainer">
-          {this.state.activeTab}
-        </div>
-
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
       </div>
     );
   }
