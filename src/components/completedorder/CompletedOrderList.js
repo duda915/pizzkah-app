@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import CompletedOrder from './CompletedOrder';
+import AddTestOrderDialog from './AddTestOrderDialog';
 
 class CompletedOrderList extends Component {
     constructor(props) {
@@ -7,9 +8,11 @@ class CompletedOrderList extends Component {
 
         this.state = {
             Orders: null,
+            Dialog: null,
         }
 
         this.fetchOrders = this.fetchOrders.bind(this);
+        this.handleShowAddTestOrderDialog = this.handleShowAddTestOrderDialog.bind(this);
     }
     componentDidMount() {
         this.fetchOrders();
@@ -25,7 +28,8 @@ class CompletedOrderList extends Component {
         .then(data => {this.setState({
             Orders: data.map(order => 
                 <li key={order.id}>
-                    <CompletedOrder orderId={order.id} orderDate={order.date} customerName={order.customerFirstName} 
+                    <CompletedOrder orderId={order.id} orderDate={order.date} customerName={order.customerFirstName 
+                    + ' ' + order.customerLastName} 
                     phone={order.phoneNumber} address={order.address} price={order.totalPrice} 
                     pizzaList={order.orderDataList}/>
                 </li>)
@@ -39,9 +43,23 @@ class CompletedOrderList extends Component {
 
     };
 
+    handleShowAddTestOrderDialog() {
+        if(this.state.Dialog === null) {
+            this.setState({
+                Dialog: (<AddTestOrderDialog closeDialog={this.handleShowAddTestOrderDialog}/>),
+            })
+        } else {
+            this.setState({
+                Dialog: null,
+            })
+        }
+    }
+
     render() {
         return (
             <div className="orderList">
+            {this.state.Dialog}
+            <button onClick={this.handleShowAddTestOrderDialog}>Add Test Order </button>
                 {this.state.Orders}
             </div>
         )
