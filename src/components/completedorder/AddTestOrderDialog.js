@@ -10,6 +10,7 @@ class AddTestOrderDialog extends Component {
             phoneNumber: '',
             address: '',
             PizzaList: '',
+            SelectOptions: '',
             optionsMap: '',
             selectInputs: '',
             DeletePizzaButton: null,
@@ -21,14 +22,18 @@ class AddTestOrderDialog extends Component {
         this.handleAddPizzaButton = this.handleAddPizzaButton.bind(this);
         this.handleDeleteInput = this.handleDeleteInput.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.populateSelectInput = this.populateSelectInput.bind(this);
     }
 
+    componentWillMount() {
+    }
     componentDidMount() {
-        this.handleAddPizzaButton();
+        this.populateSelectInput();
     }
 
     renderSelectInputs() {
-        console.log('renderSelectInputs, inputs count: ' + this.state.selectInputs.length)
+        console.log('renderSelectInputs, inputs count: ' + this.state.selectInputs.length);
+        console.log(this.state.SelectOptions);
         this.setState({
             PizzaList: this.state.selectInputs.map(input => {
                 console.log(input.inputId);
@@ -37,8 +42,7 @@ class AddTestOrderDialog extends Component {
                     Pizza
                     <select
                     onChange={this.handleSelectChange} name={input.inputId.toString()}>
-                        <option value="test">test</option>
-                        <option value="test2">test2</option>
+                        {this.state.SelectOptions}
                     </select>
                 </label>
             </li>
@@ -94,23 +98,84 @@ class AddTestOrderDialog extends Component {
         selectInputArray[id].value = value;
 
         this.setState({
-            selectInputValues: selectInputArray,
-        }, () => console.log(this.state.selectInputValues));
+            selectInputs: selectInputArray,
+        }, () => console.log(this.state.selectInputs));
+    }
 
+    populateSelectInput() {
 
+        // fetch options and populate
+        fetch('http://localhost:8081/api/pizza', {
+            method: 'get',
+            mode: 'cors',
+        })
+        .then(response => response.json())
+        .then(data => {this.setState({
+            optionsMap: data.map(pizza => {
+                return ({
+                    value: pizza.id,
+                    pizzaName: pizza.name,
+                });
+            }
+            )
+        }, () => {
+            this.setState({
+            SelectOptions: this.state.optionsMap.map(option => 
+            <option key={option.value} value={option.value}>{option.pizzaName}</option> )
+        })
 
+        this.handleAddPizzaButton();
+        }
+        )
+        console.log(data);
+        })
+        .catch(err => {
+            console.log("Rest data error");
+            console.log(err);
+        });
     }
 
     handleAddOrder() {
+        let customerName = this.state.customerName.split(' ');
+        let customerFirstName = customerName[0];
+        let customerLastName = customerName[1];
 
+        let newOrder = {
+            id: null,
+            customerFirstName: customerFirstName,
+            customerLastName: customerLastName,
+            date: new Date().toISOString(),
+            phoneNumber: this.state.phoneNumber,
+            address: this.state.address,
+            done: false,
+            orderDataList: this.state.selectInputs.map(input => {
+                return({
+                    id: null,
+                    pizza: {
+                        id: input.value,
+                    }
+                })
+            })
+        };
+
+        fetch('http://localhost:8081/api/order', {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(newOrder),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
+
+        console.log(newOrder);
     }
 
     handleAddPizzaButton() {
-
         //TODO insert default value
         let newInputObject = {
             inputId: this.state.selectInputs.length,
-            value: '',
+            value: this.state.optionsMap[0].value.toString(),
         }
 
         let inputObjectArray = Array.from(this.state.selectInputs);
