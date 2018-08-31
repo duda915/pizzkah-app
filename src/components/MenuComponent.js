@@ -6,11 +6,40 @@ class MenuComponent extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            classes: {
+                activeOrders: 'menuButton',
+                pizzaManager: 'menuButton',
+                completedOrders: 'menuButton',
+            }
+        }
         this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
-    handleMenuClick() {
-        console.log('clicked');
+    handleMenuClick(event) {
+        const target = event.target;
+        const name = target.name;
+
+
+        this.setState({
+            classes: {
+                activeOrders: 'menuButton',
+                pizzaManager: 'menuButton',
+                completedOrders: 'menuButton',
+            }
+        }, () => {
+            let classesArray = JSON.parse(JSON.stringify(this.state.classes));
+            classesArray[name] += ' active';
+            this.setState({
+                classes: classesArray,
+            });
+        });
+
+
+        
+
+
+        this.props.clickHandler(event);
     }
 
     render() {
@@ -21,19 +50,29 @@ class MenuComponent extends Component {
                     <div className="centerLogo">
                         <img src={mainLogo} className="logo" alt="mainLogo"/>
                     </div>
-                    <hr/>
+                    <br/>
                     <br/>
                     <ul>
-                        <li><button className="menuButton" onClick={this.props.clickHandler} name={this.props.activeOrdersButtonName}>
+                        <li><button className={this.state.classes.activeOrders} onClick={this.handleMenuClick} name={this.props.activeOrdersButtonName}>
                             Active Orders
                         </button></li>
-                        <li><button className="menuButton" onClick={this.props.clickHandler} name={this.props.pizzasButtonName}>
+                        <li><button className={this.state.classes.pizzaManager} onClick={this.handleMenuClick} name={this.props.pizzasButtonName}>
                             Pizzas
                         </button></li>
-                        <li><button className="menuButton" onClick={this.props.clickHandler} name={this.props.completedOrdersButtonName}>
+                        <li><button className={this.state.classes.completedOrders} onClick={this.handleMenuClick} name={this.props.completedOrdersButtonName}>
                             Completed Orders
                         </button></li>
                     </ul>
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <hr/>
+                    <div className="botMenu">
+                        <a href="#">Site</a>
+                        <br/>
+                        <a href="http://localhost:8081/api/">API</a>
+                    </div>
                 </div>
             </div>
         );

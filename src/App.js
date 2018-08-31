@@ -65,7 +65,7 @@ class App extends Component {
             <MenuComponent clickHandler={this.dashboardHandler} activeOrdersButtonName={this.state.activeOrdersButtonName}
             pizzasButtonName={this.state.pizzasButtonName} completedOrdersButtonName={this.state.completedOrdersButtonName}/>
           </div>
-          <div className="contentcontainer">
+          <div className="contentContainer">
             {this.state.activeTab}
           </div>
         </div>
