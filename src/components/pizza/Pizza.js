@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Pizza.css';
+import './Card.css';
 import EditPizzaDialog from './EditPizzaDialog';
 
 class Pizza extends Component {
@@ -22,12 +22,12 @@ class Pizza extends Component {
 
     render() {
         return (
-            <div className="pizza">
-                <div className="pizzaTitle">
+            <div className="card">
+                <div className="cardTitle">
                     {this.props.pizzaName} 
                     
                 </div>
-                <div className="pizzaInfo">
+                <div className="cardInfo">
                     <ul >
                         <li > Id: {this.props.pizzaId}</li>
                         <li> Name: {this.props.pizzaName}</li>
@@ -35,7 +35,7 @@ class Pizza extends Component {
                         <li> Price: {this.props.price}</li>
                         <li> Available: {this.props.available}</li>
                     </ul>
-                    <span className="editButton">
+                    <span className="cardButton">
                         <button onClick={this.handleEditPizzaButton}>Edit</button>
                     </span> 
                 </div>

@@ -1,4 +1,4 @@
-.pizza {
+.card {
     border: 1px solid #83916E;
     padding: 0;
     /* height: 40vh; */
@@ -6,32 +6,32 @@
     
 }
 
-.pizza ul {
+.card ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     word-wrap: break-word;
 }
 
-.pizza .pizzaTitle {
+.card .cardTitle {
     background: #445142;
     text-align: center;
     padding: 15px;
     font-size: 17px;
 }
 
-.pizza .pizzaInfo {
+.card .cardInfo {
     background: white;
 }
 
-.pizza li {
+.card li {
     color: black;
     padding: 10px;
     font-size: 15px;
     text-align: left;
 }
 
-.pizzaInfo .editButton button {
+.cardInfo .cardButton button {
     width: 100%;
     text-align: right;
     position: relative;
@@ -46,7 +46,7 @@
     outline: none;
 }
 
-.pizzaInfo .editButton button:hover {
+.cardInfo .cardButton button:hover {
     background: #3C483A;
 }
 
