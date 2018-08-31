@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Pizza from './Pizza';
 import AddPizzaDialog from './AddPizzaDialog';
+import './PizzaManager.css';
 
 class PizzaManager extends Component {
     constructor(props) {
@@ -35,10 +36,10 @@ class PizzaManager extends Component {
         .then(response => response.json())
         .then(data => {this.setState({
             Pizzas: data.map(pizza => 
-                <li key={pizza.id}>
+                <div key={pizza.id}>
                     <Pizza pizzaId={pizza.id} pizzaName={pizza.name} ingredients={pizza.ingredients} price={pizza.price} 
                     available={pizza.available.toString()} />
-                </li>)
+                </div>)
         })
         console.log(data);
         })
@@ -51,14 +52,16 @@ class PizzaManager extends Component {
 
     render() {
         return (
-            <div className="pizzaList">
+            <div className="pizzaListWrap">
                 <button onClick={this.handleAddPizzaButton}>Add Pizza</button>
 
                 <AddPizzaDialog visible={this.state.visibleAddDialog} hideDialog={this.handleAddPizzaButton}/>
-
-                <ul>
+                <div className="pizzaList">
                     {this.state.Pizzas}
-                </ul>
+                </div>
+
+                <br/>
+
             </div>
         );
     };

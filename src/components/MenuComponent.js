@@ -16,6 +16,22 @@ class MenuComponent extends Component {
         this.handleMenuClick = this.handleMenuClick.bind(this);
     }
 
+    componentDidMount() {
+        this.setState({
+            classes: {
+                activeOrders: 'menuButton',
+                pizzaManager: 'menuButton',
+                completedOrders: 'menuButton',
+            }
+        }, () => {
+            let classesArray = JSON.parse(JSON.stringify(this.state.classes));
+            classesArray['pizzaManager'] += ' active';
+            this.setState({
+                classes: classesArray,
+            });
+        });
+    }
+
     handleMenuClick(event) {
         const target = event.target;
         const name = target.name;

@@ -42,6 +42,7 @@
     background: #5C6C59;
     border: 0;
     cursor: pointer;
+    outline: none;
 }
 
 .menuButton:hover {
@@ -53,6 +54,6 @@
 }
 
 .active {
-    border-left: 5px solid #83916E;
+    border-left: 3px solid #83916E;
     background: #3C483A;
 }

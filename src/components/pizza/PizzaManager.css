@@ -1,0 +1,9 @@
+
+.pizzaListWrap .pizzaList {
+    display: grid;
+
+    grid-template-columns: 40vh 40vh 40vh;
+    justify-content: center;
+    grid-row-gap: 5vh;
+    grid-column-gap: 5vh;
+}
