@@ -7,3 +7,28 @@
     grid-row-gap: 5vh;
     grid-column-gap: 5vh;
 }
+
+.pizzaListWrap .addPizzaButtonDiv {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.addPizzaButtonDiv button {
+    width: 100%;
+    text-align: right;
+    position: relative;
+    vertical-align: top;
+    padding: 5px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+    background: #5C6C59;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+
+.addPizzaButtonDiv button:hover {
+    background: #3C483A;
+}

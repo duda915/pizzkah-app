@@ -1,0 +1,74 @@
+.dialogBackground {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.dialog {
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 0;
+    width: 30%; /* Could be more or less, depending on screen size */
+    border: 1px solid #83916E;
+    overflow: auto;
+}
+
+.dialog .topBar {
+    text-align: center;
+    border:1px solid #445142;
+    background-color: #445142;
+    padding: 15px;
+}
+
+.dialog .dialogContent {
+    background-color: #EBEBEB;
+    padding: 15px;
+
+}
+
+.dialogContent .buttonGrid {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    justify-content: center;
+}
+
+.dialogContent label{
+    padding: 10px;
+    color: black;
+    display: grid;
+    grid-template-columns: 30% 45%;
+    justify-content: center;
+}
+
+.dialogContent input {
+    color: black;
+}
+
+.dialog button {
+    width: 90%;
+    text-align: right;
+    position: relative;
+    vertical-align: top;
+    padding: 2px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+    background: #5C6C59;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+
+.dialog button:hover {
+    background: #3C483A;
+}
+

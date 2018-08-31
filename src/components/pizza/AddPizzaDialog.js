@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Dialog.css';
 
 
 class AddPizzaDialog extends Component {
@@ -60,25 +61,33 @@ class AddPizzaDialog extends Component {
     render() {
         if(this.props.visible === true) {
             return(
-                <div className="pizzaDialog">
-                        <h3> Add Pizza </h3>
-                        <label>
-                            Name: <input type="text" value={this.state.nameInput} name="nameInput" 
-                            onChange={this.handleInputChange} />
-                        </label>
-                        <br/>
-                        <label>
-                            Ingredients: <input type="text" value={this.state.ingredientsInput} name="ingredientsInput" 
+                <div className="dialogBackground">
+                    <div className='dialog'>
+                        <div className='topBar'>
+                             Add Pizza
+                        </div>
+                        <div className='dialogContent'>
+                            <label>
+                                Name: <input type="text" value={this.state.nameInput} name="nameInput" 
+                                onChange={this.handleInputChange} />
+                            </label>
+                            <br/>
+                            <label>
+                                Ingredients: <input type="text" value={this.state.ingredientsInput} name="ingredientsInput" 
+                                    onChange={this.handleInputChange}/>
+                            </label>
+                            <br/>
+                            <label>
+                                Price: <input type="text" value={this.state.priceInput} name="priceInput"
                                 onChange={this.handleInputChange}/>
-                        </label>
-                        <br/>
-                        <label>
-                            Price: <input type="text" value={this.state.priceInput} name="priceInput"
-                            onChange={this.handleInputChange}/>
-                        </label>
-                        <br/>
-                        <input type="button" onClick={this.handleSubmit} value="Add"/>
-                        <button onClick={this.props.hideDialog}>Close</button>
+                            </label>
+                            <br/>
+                            <div className='buttonGrid'>
+                                <button onClick={this.handleSubmit} >Add </button>
+                                <button onClick={this.props.hideDialog}>Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
         }

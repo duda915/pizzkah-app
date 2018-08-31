@@ -53,7 +53,9 @@ class PizzaManager extends Component {
     render() {
         return (
             <div className="pizzaListWrap">
-                <button onClick={this.handleAddPizzaButton}>Add Pizza</button>
+                <div className='addPizzaButtonDiv'>
+                    <button onClick={this.handleAddPizzaButton}>Add Pizza</button>
+                </div>
 
                 <AddPizzaDialog visible={this.state.visibleAddDialog} hideDialog={this.handleAddPizzaButton}/>
                 <div className="pizzaList">
