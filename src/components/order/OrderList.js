@@ -24,11 +24,11 @@ class OrderList extends Component {
         .then(response => response.json())
         .then(data => {this.setState({
             Orders: data.map(order => 
-                <li key={order.id}>
+                <div key={order.id}>
                     <Order orderId={order.id} orderDate={order.date} customerName={order.customerFirstName} 
                     phone={order.phoneNumber} address={order.address} price={order.totalPrice} 
                     pizzaList={order.orderDataList}/>
-                </li>)
+                </div>)
         })
         console.log(data);
         })
@@ -41,8 +41,12 @@ class OrderList extends Component {
 
     render() {
         return (
-            <div className="orderList">
-                {this.state.Orders}
+            <div className="contentListWrap">
+            <br/>
+                <div className='contentList'>
+                    {this.state.Orders}
+                </div>
+                <br/>
             </div>
         )
     };

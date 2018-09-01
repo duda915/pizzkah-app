@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './Order.css';
+import '../Card.css';
+import '../Order.css';
 
 class Order extends Component {
     constructor(props) {
@@ -41,23 +42,30 @@ class Order extends Component {
 
     render() {
         return (
-            <div className="order">
-                Order
-                <ul>
-                    <li> Date: {this.props.orderDate}</li>
-                    <li> Customer: {this.props.customerName}</li>
-                    <li> Phone: {this.props.phone}</li>
-                    <li> Address: {this.props.address}</li>
-                    <li> Price: {this.props.price}</li>
-                    <br/>
-                    Pizza List:
+            <div className="card">
+                <div className='cardTitle'>
+                    {this.props.customerName}
+                </div>
+                <div className='cardInfo'>
                     <ul>
-                    {this.state.PizzaList}
+                        <li> Date: {this.props.orderDate}</li>
+                        <li> Customer: {this.props.customerName}</li>
+                        <li> Phone: {this.props.phone}</li>
+                        <li> Address: {this.props.address}</li>
+                        <li> Price: {this.props.price}</li>
+                        <br/>
+                        <div className='orderList'>
+                            Pizza List:
+                            <ul>
+                            {this.state.PizzaList}
+                            </ul>
+                        </div>
+                        
                     </ul>
-                    
-                </ul>
-
-                <button onClick={this.handleCompleteOrder}>Mark As Completed</button>
+                    <span className='cardButton'>
+                        <button onClick={this.handleCompleteOrder}>Mark As Completed</button>
+                    </span>
+                </div>
             </div>
         );
     }
