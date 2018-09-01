@@ -1,0 +1,29 @@
+.dialogContent .pizzaList {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.item {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.item select {
+    width: 100%;
+    text-align: right;
+    position: relative;
+    vertical-align: top;
+    padding: 2px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+    background: #5C6C59;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+}

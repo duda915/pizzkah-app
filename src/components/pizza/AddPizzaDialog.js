@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Dialog.css';
+import '../Dialog.css';
 
 
 class AddPizzaDialog extends Component {

@@ -1,0 +1,12 @@
+.orderList {
+    color: white;
+    background-color: #83916E;
+    padding: 10px;
+}
+
+.orderList li {
+    color: white;
+    list-style: disc;
+    margin: 10px;
+    text-align: center;
+}

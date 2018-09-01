@@ -27,12 +27,12 @@ class CompletedOrderList extends Component {
         .then(response => response.json())
         .then(data => {this.setState({
             Orders: data.map(order => 
-                <li key={order.id}>
+                <div key={order.id}>
                     <CompletedOrder orderId={order.id} orderDate={order.date} customerName={order.customerFirstName 
                     + ' ' + order.customerLastName} 
                     phone={order.phoneNumber} address={order.address} price={order.totalPrice} 
                     pizzaList={order.orderDataList}/>
-                </li>)
+                </div>)
         })
         console.log(data);
         })
@@ -57,10 +57,15 @@ class CompletedOrderList extends Component {
 
     render() {
         return (
-            <div className="orderList">
+            <div className="contentListWrap">
             {this.state.Dialog}
-            <button onClick={this.handleShowAddTestOrderDialog}>Add Test Order </button>
-                {this.state.Orders}
+                <div className='addContentButtonDiv'>
+                    <button onClick={this.handleShowAddTestOrderDialog}>Add Test Order </button>
+                </div>
+                <div className='contentList'>
+                    {this.state.Orders}
+                </div>
+                <br/>
             </div>
         )
     };

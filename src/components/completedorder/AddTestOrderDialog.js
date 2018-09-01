@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import '../Dialog.css';
+import './AddTestOrderDialogFix.css';
 
 
 class AddTestOrderDialog extends Component {
@@ -37,15 +39,13 @@ class AddTestOrderDialog extends Component {
         this.setState({
             PizzaList: this.state.selectInputs.map(input => {
                 console.log(input.inputId);
-                return <li key={input.inputId}>
-                <label>
-                    Pizza
+                return <div className='item' key={input.inputId}>
+                    
                     <select
                     onChange={this.handleSelectChange} name={input.inputId.toString()}>
                         {this.state.SelectOptions}
                     </select>
-                </label>
-            </li>
+            </div>
             
             } )
         });
@@ -169,6 +169,8 @@ class AddTestOrderDialog extends Component {
         .catch(error => console.error('Error:', error));
 
         console.log(newOrder);
+
+        this.props.closeDialog();
     }
 
     handleAddPizzaButton() {
@@ -190,33 +192,43 @@ class AddTestOrderDialog extends Component {
 
     render() {
         return (
-            <div className="addOrderDialog">
-                <h3> Add Test Order </h3>
-                <label>
-                    Customer name:
-                    <input type="text" value={this.state.customerName} name="customerName" onChange={this.handleInputChange}/>
-                </label>
-                <br/>
-                <label>
-                    Phone number:
-                    <input type="text" value={this.state.phoneNumber} name="phoneNumber" onChange={this.handleInputChange}/>
-                </label>
-                <br/>
-                <label>
-                    Address:
-                    <input type="text" value={this.state.address} name="address" onChange={this.handleInputChange}/>
-                </label>
-                <br/>
-                <ul>
-                    {this.state.PizzaList}
-                </ul>
-                <button onClick={this.handleAddPizzaButton}>+</button>
-                {this.state.DeletePizzaButton}
-                <br/>
-                <button onClick={this.props.closeDialog}>Close</button>
-                <br/>
-                <button onClick={this.handleAddOrder}>Add Order</button>
-
+            <div className="dialogBackground">
+                <div className='dialog'>
+                    <div className='topBar'>
+                        Add Test Order
+                    </div>
+                    <div className='dialogContent'>
+                        <label>
+                            Customer name:
+                            <input type="text" value={this.state.customerName} name="customerName" onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            Phone number:
+                            <input type="text" value={this.state.phoneNumber} name="phoneNumber" onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            Address:
+                            <input type="text" value={this.state.address} name="address" onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <div className='pizzaList'>
+                            {this.state.PizzaList}
+                        </div>
+                        <br/>
+                        <div className='buttonGrid'>
+                            <button onClick={this.handleAddPizzaButton}>+</button>
+                            {this.state.DeletePizzaButton}
+                        </div>
+                        <br/>
+                    
+                    <div className='buttonGrid'>
+                        <button onClick={this.handleAddOrder}>Add Order</button>
+                        <button onClick={this.props.closeDialog}>Close</button>
+                    </div>
+                    </div>
+                </div>
             </div>
         );
     }

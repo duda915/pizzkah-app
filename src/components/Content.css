@@ -1,5 +1,5 @@
 
-.pizzaListWrap .pizzaList {
+.contentListWrap .contentList {
     display: grid;
 
     grid-template-columns: 40vh 40vh 40vh;
@@ -8,12 +8,12 @@
     grid-column-gap: 5vh;
 }
 
-.pizzaListWrap .addPizzaButtonDiv {
+.contentListWrap .addContentButtonDiv {
     padding: 0;
     margin-bottom: 10px;
 }
 
-.addPizzaButtonDiv button {
+.addContentButtonDiv button {
     width: 100%;
     text-align: right;
     position: relative;
@@ -29,6 +29,6 @@
 }
 
 
-.addPizzaButtonDiv button:hover {
+.addContentButtonDiv button:hover {
     background: #3C483A;
 }

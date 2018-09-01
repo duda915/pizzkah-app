@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Pizza from './Pizza';
 import AddPizzaDialog from './AddPizzaDialog';
-import './PizzaManager.css';
+import '../Content.css';
 
 class PizzaManager extends Component {
     constructor(props) {
@@ -52,13 +52,13 @@ class PizzaManager extends Component {
 
     render() {
         return (
-            <div className="pizzaListWrap">
-                <div className='addPizzaButtonDiv'>
+            <div className="contentListWrap">
+                <div className='addContentButtonDiv'>
                     <button onClick={this.handleAddPizzaButton}>Add Pizza</button>
                 </div>
 
                 <AddPizzaDialog visible={this.state.visibleAddDialog} hideDialog={this.handleAddPizzaButton}/>
-                <div className="pizzaList">
+                <div className="contentList">
                     {this.state.Pizzas}
                 </div>
 

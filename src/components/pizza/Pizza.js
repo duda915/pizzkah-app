@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Card.css';
+import '../Card.css';
 import EditPizzaDialog from './EditPizzaDialog';
 
 class Pizza extends Component {
